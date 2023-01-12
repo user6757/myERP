@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ page  contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
@@ -13,6 +13,7 @@
 
     <title>erp</title>
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <jsp:include page="../../tiles/layouts/include.jsp" />
 
 </head>
 
@@ -23,19 +24,19 @@
         <!-- Outer Row -->
         <div class="row justify-content-center">
 
-            <div class="col-xl-10 col-lg-12 col-md-9">
+            <div class="col-xl-6 col-lg-12 col-md-9">
 
                 <div class="card o-hidden border-0 shadow-lg my-5">
+                    
                     <div class="card-body p-0">
                         <!-- Nested Row within Card Body -->
                         <div class="row">
-                            <div class="col-lg-6 d-none d-lg-block"></div>
-                            <div class="col-lg-6">
+                            <div class="col-lg-12">
                                 <div class="p-5">
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">로그인</h1>
                                     </div>
-                                    <form class="user" name="userfrm" action="/login/sing_in" method="post">
+                                    <form class="user" name="userfrm" id="userfrm">
                                         <div class="form-group">
                                             <input type="email" name="userId" class="form-control form-control-user"id="userId" aria-describedby="emailHelp"
                                                 placeholder="아이디를 입력하세요:">
@@ -74,9 +75,6 @@
 
     </div>
    <script src="js/sing_in.js"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
 
 
 </body>
