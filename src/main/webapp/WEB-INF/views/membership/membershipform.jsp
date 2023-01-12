@@ -31,19 +31,19 @@
                             <div class="col-lg-12">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-800 mb-4">회원가입!</h1>
+                                        <h1 class="h4 text-gray-800 mb-4">회원가입</h1>
                                     </div>
                                     <form class="userfrm" name="userfrm" action="/membership/sing-up" method="post">
                                         <div class="form-group row">
 
                                             <div class="col-sm-6 mb-3 mb-sm-0">
                                                 <input type="email" class="form-control form-control-user" name="userId"
-                                                    id="userId" placeholder="아이디 입력:">
+                                                    id="userId" placeholder="아이디:">
                                             </div>
 
                                             <div class="col-sm-6">
                                                 <input type="password" class="form-control form-control-user"
-                                                    name="userPw" id="userPw" placeholder="비밀번호 입력:">
+                                                    name="userPw" id="userPw" placeholder="비밀번호:">
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -53,7 +53,7 @@
                                             </div>
                                             <div class="col-sm-6">
                                                 <input type="text" class="form-control form-control-user" id="userName"
-                                                    name="userName" placeholder="이름 입력:">
+                                                    name="userName" placeholder="이름:">
                                             </div>
                                         </div>
 
@@ -61,12 +61,12 @@
 
                                             <div class="col-sm-6 mb-3 mb-sm-0">
                                                 <input type="text" class="form-control form-control-user" name="userHp"
-                                                    id="userHp" placeholder="핸드폰번호 입력:">
+                                                    id="userHp" placeholder="핸드폰번호:">
                                             </div>
 
                                         </div>
                                         
-                                        <button type="button" class="btn btn-user btn-primary btn-block">회원가입</button>
+                                        <button type="button" class="btn btn-primary btn-block">회원가입</button>
                                         <a href="/" class="btn btn-primary btn-block">뒤로</a>
 
                                     </form>
