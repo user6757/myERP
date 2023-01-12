@@ -11,7 +11,7 @@ import java.util.Date;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class LoginDTO {
+public class MyERP_userDTO {
 
     private String userId;   //사원 아이디
     private String userPw;   //사원 비밀번호
