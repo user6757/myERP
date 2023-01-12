@@ -33,7 +33,7 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-800 mb-4">회원가입</h1>
                                     </div>
-                                    <form class="userfrm" name="userfrm" action="/membership/sing-up" method="post">
+                                    <form class="userfrm" name="userfrm" action="/membership/sing_up" method="post">
                                         <div class="form-group row">
 
                                             <div class="col-sm-6 mb-3 mb-sm-0">
@@ -60,13 +60,13 @@
                                         <div class="form-group row">
 
                                             <div class="col-sm-6 mb-3 mb-sm-0">
-                                                <input type="text" class="form-control form-control-user" name="userHp"
-                                                    id="userHp" placeholder="핸드폰번호:">
+                                                <input type="text" class="form-control form-control-user" name="userTel"
+                                                    id="userTel" placeholder="핸드폰번호:">
                                             </div>
 
                                         </div>
                                         
-                                        <button type="button" class="btn btn-primary btn-block">회원가입</button>
+                                        <button type="button" id="btn" class="btn btn-primary btn-block">회원가입</button>
                                         <a href="/" class="btn btn-primary btn-block">뒤로</a>
 
                                     </form>
@@ -80,4 +80,5 @@
 
 
         </div>
+        <script src="js/sing_up.js"></script>
     </body>

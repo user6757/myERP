@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.BEJproject.myERP.mapper.LoginMapper">
+<mapper namespace="com.BEJproject.myERP.mapper.MemberMapper">
 
     <resultMap id="login" type="com.BEJproject.myERP.dto.LoginDTO">
         <result column="user_id" property="userId"/>
@@ -13,8 +13,13 @@
         <result column="user_modify_regdate" property="userModifyregdate"/>
     </resultMap>
 
-   <select id="singIn" resultType="int">
-       select count(*) from myERP_user
-       where user_id = #{userId} and user_pw=#{userPw}
-   </select>
+    <select id="idcheck" resultType="int">
+        select count(user_id) from myERP_user
+        where user_id = #{userId}
+    </select>
+
+    <insert id="singUp">
+        insert into myERP_user(user_id, user_pw, user_name, user_tel, user_no, user_flag, user_regdate)
+        values(#{userId}, #{userPw}, #{userName}, #{userTel}, user_no_seq.nextval, #{userFlag}, sysdate)
+    </insert>
 </mapper>
