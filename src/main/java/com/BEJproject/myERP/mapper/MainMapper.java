@@ -4,7 +4,8 @@ import com.BEJproject.myERP.dto.MyERP_userDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
-public interface LoginMapper {
+public interface MainMapper {
 
-    int singIn(MyERP_userDTO myERPuserDTO);
+    MyERP_userDTO getUser(String userId);
+
 }

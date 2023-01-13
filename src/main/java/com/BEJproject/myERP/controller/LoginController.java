@@ -1,6 +1,6 @@
 package com.BEJproject.myERP.controller;
 
-import com.BEJproject.myERP.dto.LoginDTO;
+import com.BEJproject.myERP.dto.MyERP_userDTO;
 import com.BEJproject.myERP.service.LoginService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -30,11 +30,11 @@ public class LoginController {
 
     @RequestMapping(value = "/login/sing_in", method = {RequestMethod.POST})
     @ResponseBody
-    public ResponseEntity<Boolean> singIn(LoginDTO loginDTO, HttpServletRequest request){
+    public ResponseEntity<Boolean> singIn(MyERP_userDTO myERPuserDTO, HttpServletRequest request){
         log.info("확인함!");
-        boolean login = loginService.singIn(loginDTO);
+        boolean login = loginService.singIn(myERPuserDTO);
         HttpSession userid = request.getSession();
-        userid.setAttribute("userId", loginDTO.getUserId());
+        userid.setAttribute("userId", myERPuserDTO.getUserId());
         return new ResponseEntity<>(login, HttpStatus.OK);
 
     }

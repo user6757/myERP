@@ -1,6 +1,6 @@
 package com.BEJproject.myERP.controller;
 
-import com.BEJproject.myERP.dto.LoginDTO;
+import com.BEJproject.myERP.dto.MyERP_userDTO;
 import com.BEJproject.myERP.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -9,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -38,8 +37,8 @@ public class MemberController {
     }
 
     @RequestMapping(value = "/membership/sing_up", method = {RequestMethod.POST})
-    public ResponseEntity<?> singUp(LoginDTO loginDTO){
-        boolean getsing_up = memberService.singUp(loginDTO);
+    public ResponseEntity<?> singUp(MyERP_userDTO myERPuserDTO){
+        boolean getsing_up = memberService.singUp(myERPuserDTO);
         if (getsing_up == true){
             return new ResponseEntity<>("success", HttpStatus.OK);
         }else {

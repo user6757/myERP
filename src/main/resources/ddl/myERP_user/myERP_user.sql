@@ -11,3 +11,4 @@ create table myERP_user(
 );
 
 insert into myERP_user(user_id, user_pw, user_name, user_tel, user_no, user_flag, user_regdate) values('hong3@naver.com', 'hong23', 'È«±æµ¿', '010-1234-5678', 1, '»ç¿ø', sysdate);
+select * from myERP_user;
