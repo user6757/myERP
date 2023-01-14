@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ERP main</title>
+
     <jsp:include page="../../tiles/layouts/include.jsp"/>
 </head>
 <body id="page-top">
@@ -32,7 +32,9 @@
           <a class="nav-link">
             <img class="img-profile rounded-circle" src="img/undraw_profile.svg" style="width: 64px;height: 64px;">&nbsp;&nbsp;
             <span>${erp.userName}</span>&nbsp;
-            <c:if test="${erp.userId eq '관리자'}"><span class="badge badge-danger">Admin</span></c:if>
+            <c:if test="${erp.userFlag eq '관리자'}">
+                <span class="badge badge-danger">Admin</span>
+            </c:if>
             <br>
             <br>
             <form action="logout" method="post">
@@ -82,7 +84,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link collapsed" href="/mainboard" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+          <a class="nav-link collapsed" onclick="mainboard('main', 'mainboard')" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
             <i class="fa-solid fa-clipboard"></i>
             <span>자유 게시판</span>
           </a>
@@ -166,16 +168,11 @@
           </div>
         </div>
         <!-- footer -->
-        <footer class="sticky-footer bg-white">
-          <div class="container my-auto">
-            <div class="copyright text-center my-auto">
-              <span>BEJERP; My Website 2023</span>
-            </div>
-          </div>
-        </footer>
+        <jsp:include page="../../tiles/layouts/footer.jsp"/>
       </div>
       <!-- End of Content Wrapper -->
     </div>
+    <script src="js/allpage.js"></script>
 
     </body>
 </html>

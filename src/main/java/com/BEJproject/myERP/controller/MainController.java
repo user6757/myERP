@@ -26,10 +26,22 @@ public class MainController {
         session = request.getSession();
         String userId = (String)session.getAttribute("userId");
         MyERP_userDTO myERP_userDTO = mainService.getUser(userId);
-        log.info("getuser확인!!");
         ModelAndView mv= new ModelAndView();
         mv.setViewName("main/main");
         mv.addObject("erp", myERP_userDTO);
+        return mv;
+    }
+
+    @RequestMapping("/main/maindashboard")
+    public ModelAndView maindashboard(){
+        ModelAndView mv = new ModelAndView("main/maindashboard");
+        return mv;
+    }
+    @RequestMapping("/main/mainboard")
+    public ModelAndView mainBoard(){
+        System.out.println("메인 게시판 페이지!");
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("main/mainboard");
         return mv;
     }
 

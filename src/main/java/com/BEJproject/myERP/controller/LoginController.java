@@ -31,10 +31,13 @@ public class LoginController {
     @RequestMapping(value = "/login/sing_in", method = {RequestMethod.POST})
     @ResponseBody
     public ResponseEntity<Boolean> singIn(MyERP_userDTO myERPuserDTO, HttpServletRequest request){
-        log.info("확인함!");
         boolean login = loginService.singIn(myERPuserDTO);
-        HttpSession userid = request.getSession();
-        userid.setAttribute("userId", myERPuserDTO.getUserId());
+        if (login == true){
+            HttpSession userid = request.getSession();
+            userid.setMaxInactiveInterval(1800);
+            userid.setAttribute("userId", myERPuserDTO.getUserId());
+        }
+
         return new ResponseEntity<>(login, HttpStatus.OK);
 
     }
