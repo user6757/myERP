@@ -67,6 +67,11 @@
     <!-- 글쓰기 버튼 영역 -->
     <input type="hidden" id="boardname" value="${boardname}">
 
+        <div class="create writing" align="left">
+            <a class="btn btn-success" onclick="mainboardform('main', 'mainboardwriter')">글쓰기</a>
+        </div>
+    <!-- 페이지 버튼 영역 -->
+    
 </div>
 
 <div id="search box" align="right">
