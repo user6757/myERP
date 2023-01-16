@@ -18,7 +18,7 @@ public class MyERP_mainboard {
     private String mainboardWriter;
     private String mainboardContent;
     private Integer mainboardViewcnt;
-    private String mainboardUserid;
+    private String mainboardUserId;
     private Date mainboardRegdate;
     private Date mainboardModifyregdate;
 }
