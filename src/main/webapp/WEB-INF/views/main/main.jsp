@@ -31,12 +31,13 @@
         <li class="nav-item active">
           <a class="nav-link">
             <img class="img-profile rounded-circle" src="img/undraw_profile.svg" style="width: 64px;height: 64px;">&nbsp;&nbsp;
-            <span>${erp.userName}</span>&nbsp;
-            <c:if test="${erp.userFlag eq '관리자'}">
+            <span>${user.userName}</span>&nbsp;
+            <c:if test="${user.userFlag eq '관리자'}">
                 <span class="badge badge-danger">Admin</span>
             </c:if>
             <br>
             <br>
+            
             <form action="logout" method="post">
                 <button class="btn btn-primary" style="width: 186px;">로그아웃</button>
             </form>
@@ -49,6 +50,7 @@
     
         <!-- Heading -->
         <div class="sidebar-heading">MyArea</div>
+        <input type="hidden" id="userName" name="userName" value="${user.userName}">
     
         <li class="nav-item">
           <a class="nav-link collapsed" href="#" onclick="window.open('/main/editinfo', 'PopupWin', 'width=710,height=810');" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
@@ -84,7 +86,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link collapsed" onclick="mainboard('main', 'mainboard')" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+          <a class="nav-link collapsed" onclick="mainboardform('main', 'mainboard')">
             <i class="fa-solid fa-clipboard"></i>
             <span>자유 게시판</span>
           </a>

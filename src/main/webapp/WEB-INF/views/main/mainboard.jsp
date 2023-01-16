@@ -1,58 +1,77 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<div id="comment_body">
-    <label for="comment_text" >댓글내용</label>
-    <textareaa roew="3" id="mainboardTitle" name="mainboardTitle" class="cm-form-control" placeholder="내용을 입력해주세요."></textareaa>
+<style>
+    .bottom-section {
+        margin-top: 50px;
+        margin-bottom: 30px;
+        display: flex;
+    }
 
-    <div>
-        <label for="comment_writer">댓글 작성자</label>
-        <input id="mainboardWriter" name="mainboardWriter" type="text" class="cm-form-control" placeholder="작성자 이름:">
-        <button id="comment_btn" type="button" class="btn btn-info cm-form-control" >등록</button>
-    </div>
+    .bottom-section nav {
+        flex: 9;
+        display: flex;
+        justify-content: center;
+    }
+
+    .bottom-section .btn-write {
+        flex: 1;
+    }
+</style>
+
+<h2 align="center">자유 게시판</h2>
+<hr>
+<div class="input-group mb-4">
+    <form action="list" method="get">
+
+        <select class="form-select" name="faqtype" id="search-type">
+            <option value="faqtitle">제목</option>
+            <option value="faqcontent">내용</option>
+        </select><br>
+        <div class="input-group" style="margin-left: auto;">
+            <input type="text" style="margin-right: 10px;" class="form-control" id="faqkeyword"
+                name="faqkeyword" placeholder="입력해주세요" />
+            <a class="btn btn-primary" href="#" onclick="changeContentCusSearch('main', 'faq')">검색</a>
+        </div>
+
+    </form>
+</div>
+<table class="boardDTO table">
+    <thead>
+        <tr>
+            <th id="board_num" scope="col">게시물 번호</th>
+            <th scope="col">제목</th>
+            <th id="read_board_count" scope="col">조회수</th>
+            <th scope="col">작성일</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <c:forEach var="list" items="${main}">
+            <tr>
+                <th scope="row">${list.mainboardBno}</th>
+                <td><a href="#" onclick="mainboard('main', 'mainboardDetaile')">${list.mainboardTitle}</a>
+                </td>
+                <td>${list.mainboardContent}</td>
+                <td>${list.mainboardRegdate}</td>
+            </tr>
+        </c:forEach>
+    </tbody>
+
+</table>
+
+<!-- 글 추가 -->
+
+<!-- 게시글 목록 하단 영역 -->
+<div class="bottom-section">
+
+    <!-- 글쓰기 버튼 영역 -->
+    <input type="hidden" id="boardname" value="${boardname}">
+
 </div>
 
-<!-- 댓글 내용 -->
-<div>
-
-    <!-- 댓글 헤더 -->
-    <div>
-        <div>댓글(<span id="comment_count">0</span>)</div>
-    </div>
-
-    <!-- 댓글 바디 -->
-    <div id="comment_text">
-        <div id="comment_data">
-            <!-- 댓글 정보 -->
-        </div>
-    </div>
-
-    <!-- 댓글 페이징 -->
-
-    <!-- 요기는 동철씨한테 받아서 넣을 곳 -->
-
-    <!-- 댓글 수정 -->
-    <div id=comment_revise_modal>
-
-        <!-- 모달 헤더 -->
-        <div class="modal-header">
-            <h3 class="modal-title">댓글 수정하기</h3>
-            <button type="button" class="btn btn-light" data-bs-dismiss="modal">X</button>
-        </div>
-
-        <!-- 모달 바디 -->
-        <div class="modal-body">
-            <div class="form-gruop">
-                <input id="mod_comment" type="hidden">
-                <label for="mod_comment_text" hidden>댓글내용</label>
-                <textareaa id="mod_comment_text" class="cm-form-control" placeholder="수정할 댓글 내용을 입력하세요." row="3"></textarea>
-            </div>
-        </div>
-
-        <!-- 모달 푸터 -->
-        <div class="modal-footer">
-            <button id="comment_mod_btn" type="button" class="btn btn-warning">수정</button>
-            <button id="modal_close" type="button" class="btn btn-light" data-bs-dismiss>닫기</button>
-        </div>
-
-    </div>
+<div id="search box" align="right">
+    <a href="javascript:openfrm('/faq/Precautions');">주의사항</a>
+</div>
+<div class="input-group mb-4" align="center">
+    <a href="#" onclick="changeContentCus('main', 'path')">화면이동</a>
 </div>
