@@ -2,8 +2,10 @@ package com.BEJproject.myERP.controller;
 
 import com.BEJproject.myERP.dto.MyERP_userDTO;
 import com.BEJproject.myERP.service.LoginService;
+import com.BEJproject.myERP.service.LoginServiceImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -16,11 +18,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @Controller
-@RequiredArgsConstructor
 @Log4j2
 public class LoginController {
 
-    private final LoginService loginService;
+    private HttpSession session;
+    private LoginService loginService;
+
+    @Autowired
+    public LoginController(LoginService loginService){
+        this.loginService = loginService;
+    }
     @RequestMapping("/login")
     public ModelAndView login(){
         ModelAndView mv= new ModelAndView();
@@ -33,12 +40,23 @@ public class LoginController {
     public ResponseEntity<Boolean> singIn(MyERP_userDTO myERPuserDTO, HttpServletRequest request){
         boolean login = loginService.singIn(myERPuserDTO);
         if (login == true){
-            HttpSession userid = request.getSession();
-            userid.setMaxInactiveInterval(1800);
-            userid.setAttribute("userId", myERPuserDTO.getUserId());
+            session= request.getSession();
+            session.setMaxInactiveInterval(1800);
+            session.setAttribute("userId", myERPuserDTO.getUserId());
         }
 
         return new ResponseEntity<>(login, HttpStatus.OK);
 
+    }
+
+    @RequestMapping("/logout")
+    public ModelAndView logout(HttpServletRequest request){
+        session = request.getSession(false);
+        if(session ==null){
+            log.info("세션아이디:{}", session.getAttribute("userId"));
+            session.invalidate();
+        }
+        ModelAndView mv = new ModelAndView("login/login");
+        return mv;
     }
 }

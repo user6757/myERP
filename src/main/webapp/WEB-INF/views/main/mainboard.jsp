@@ -49,10 +49,9 @@
         <c:forEach var="list" items="${main}">
             <tr>
                 <th scope="row">${list.mainboardBno}</th>
-                <td><a href="#" onclick="mainboard('main', 'mainboardDetaile')">${list.mainboardTitle}</a>
-                </td>
-                <td>${list.mainboardContent}</td>
-                <td>${list.mainboardRegdate}</td>
+                <td><a href="#" onclick="detailepath('main', 'detaile?mainboardBno=${list.mainboardBno}')">${list.mainboardTitle}</a></td>
+                <td>${list.mainboardViewcnt}</td>
+                <td>${list.strRegdate}</td>
             </tr>
         </c:forEach>
     </tbody>

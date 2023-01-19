@@ -5,11 +5,11 @@ function mainboard(path, name){
     $('#mainContent').load('/'+path+'/'+name);
 }
 
-function mainboardform(path, name){
+function mainboardpath(path, name){
 
-    const mainboardWriter = $('#userName');
-    console.log('이름:', mainboardWriter.val());
+    const mainboardWriter = $('#mainboardWriter');
 
     $('#mainContent').children().remove();
     $('#mainContent').load('/'+path+'/'+name+'?boardname='+mainboardWriter.val());
+
 }

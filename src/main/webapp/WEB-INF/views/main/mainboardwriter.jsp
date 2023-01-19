@@ -10,13 +10,13 @@
                     </div>
                     <div class="mainboard-3">
                         <label for="write_text" class="form-label">내용</label>
-                        <input type="text" class="form-control" name="mainboardContent" id="mainboardContent" row="10" placeholder="내용을 입력해 주세요." required>
+                        <input type="textarea" class="form-control" name="mainboardContent" id="mainboardContent" row="10" placeholder="내용을 입력해 주세요." required>                     
                     </div>
             </div>
 
                 <div>
                     <button type="button" class="btn btn-primary" onclick="writercheck('main', 'mainboard')">등록</button>
 
-                    <button id="to-list" type="button" class="btn btn-primary" onclick="changeContentCus('main', 'faq')">목록</button>
+                    <button id="to-list" type="button" class="btn btn-primary" onclick="mainboardpath('main', 'mainboard')">목록</button>
                 </div>
             </form>

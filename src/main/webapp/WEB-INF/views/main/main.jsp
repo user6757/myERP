@@ -9,6 +9,7 @@
     <title>ERP main</title>
 
     <jsp:include page="../../tiles/layouts/include.jsp"/>
+
 </head>
 <body id="page-top">
     <div id="wrapper">
@@ -39,7 +40,7 @@
             <br>
             
             <form action="logout" method="post">
-                <button class="btn btn-primary" style="width: 186px;">로그아웃</button>
+                <button class="btn btn-primary" style="width: 186px;" href="/logout">로그아웃</button>
             </form>
           </a>
     
@@ -50,7 +51,6 @@
     
         <!-- Heading -->
         <div class="sidebar-heading">MyArea</div>
-        <input type="hidden" id="userName" name="userName" value="${user.userName}">
     
         <li class="nav-item">
           <a class="nav-link collapsed" href="#" onclick="window.open('/main/editinfo', 'PopupWin', 'width=710,height=810');" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
@@ -86,7 +86,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link collapsed" onclick="mainboardform('main', 'mainboard')">
+          <a class="nav-link collapsed" onclick="mainboard('main', 'mainboard')">
             <i class="fa-solid fa-clipboard"></i>
             <span>자유 게시판</span>
           </a>
@@ -174,7 +174,6 @@
       </div>
       <!-- End of Content Wrapper -->
     </div>
-    <script src="js/allpage.js"></script>
 
     </body>
 </html>

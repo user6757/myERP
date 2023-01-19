@@ -2,36 +2,41 @@ package com.BEJproject.myERP.controller;
 
 import com.BEJproject.myERP.dto.MyERP_mainboard;
 import com.BEJproject.myERP.dto.MyERP_userDTO;
-import com.BEJproject.myERP.service.MainService;
+import com.BEJproject.myERP.service.LoginService;
+import com.BEJproject.myERP.service.MainBoardService;
 import com.BEJproject.myERP.service.MemberService;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.lang.reflect.Member;
 import java.util.List;
 
 @Controller
 @Log4j2
 public class MainController {
 
-    @Autowired
-    private MainService mainService;
+    private MainBoardService mainBoardService;
+    private MemberService memberService;
     private HttpSession session;
+
+    @Autowired
+    public MainController(MainBoardService mainBoardService, MemberService memberService){
+        this.mainBoardService = mainBoardService;
+        this.memberService = memberService;
+    }
 
     @RequestMapping("/main")
     public ModelAndView login(HttpServletRequest request){
         session = request.getSession();
         String userId = (String)session.getAttribute("userId");
-        MyERP_userDTO myERP_userDTO = mainService.getUser(userId);
-        log.info("유저아이디:{}", myERP_userDTO.getUserId());
+        MyERP_userDTO myERP_userDTO = mainBoardService.getUser(userId);
         ModelAndView mv= new ModelAndView();
         mv.setViewName("main/main");
         mv.addObject("user", myERP_userDTO);
@@ -44,12 +49,20 @@ public class MainController {
         return mv;
     }
     @RequestMapping("/main/mainboard")
-    public ModelAndView mainBoard(String boardname){
-        List<MyERP_mainboard> list = mainService.boardlist();
+    public ModelAndView mainBoard(HttpServletRequest request){
+        List<MyERP_mainboard> list = mainBoardService.boardlist();
+        session = request.getSession();
+        String userId = (String)session.getAttribute("userId");
+        String userName = memberService.getuserName(userId);
+        int mainboardBno = 0;
+        for(MyERP_mainboard mainboard: list){
+            mainboardBno = mainboard.getMainboardBno();
+        }
         ModelAndView mv = new ModelAndView();
         mv.setViewName("main/mainboard");
+        mv.addObject("mainboardBno", mainboardBno);
         mv.addObject("main", list);
-        mv.addObject("boardname", boardname);
+        mv.addObject("boardname", userName);
         return mv;
     }
 
@@ -65,20 +78,6 @@ public class MainController {
         mv.setViewName("main/mainboardwriter");
         return mv;
     }
-
-    @RequestMapping("/main/mainboardsave")
-    public ResponseEntity<?> save(MyERP_mainboard mainboard){
-        log.info("아이디:{}, 제목:{}, 내용:{}", mainboard.getMainboardUserId(), mainboard.getMainboardTitle(), mainboard.getMainboardContent());
-        boolean save = mainService.boardsave(mainboard);
-        if (save==true){
-           return new ResponseEntity<>("success", HttpStatus.OK);
-        }else{
-            return new ResponseEntity<>("error", HttpStatus.BAD_REQUEST);
-        }
-    }
-
-
-
 
 
 }

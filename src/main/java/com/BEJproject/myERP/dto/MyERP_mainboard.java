@@ -21,4 +21,5 @@ public class MyERP_mainboard {
     private String mainboardUserId;
     private Date mainboardRegdate;
     private Date mainboardModifyregdate;
+    private String strRegdate;
 }

@@ -22,4 +22,9 @@
         insert into myERP_user(user_id, user_pw, user_name, user_tel, user_no, user_flag, user_regdate)
         values(#{userId}, #{userPw}, #{userName}, #{userTel}, user_no_seq.nextval, #{userFlag}, sysdate)
     </insert>
+
+    <select id="getuserName" resultType="String">
+        select user_name from myERP_user
+        where user_id = #{userId}
+    </select>
 </mapper>
