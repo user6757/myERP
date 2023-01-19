@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.BEJproject.myERP.mapper.MainMapper">
+<mapper namespace="com.BEJproject.myERP.mapper.MainBoardMapper">
 
     <resultMap id="login" type="com.BEJproject.myERP.dto.MyERP_userDTO">
         <result column="user_id" property="userId"/>
@@ -38,4 +38,19 @@
         select * from myERP_mainboard
         order by mainboard_bno desc
     </select>
+
+    <select id="getboard" resultMap="main">
+        select * from myERP_mainboard
+        where mainboard_bno = #{mainboardBno}
+    </select>
+
+    <update id="updateViewcnt">
+        update myERP_mainboard set mainboard_viewcnt = mainboard_viewcnt+1
+        where mainboard_bno = #{mainboardBno}
+    </update>
+
+    <update id="boardmodify">
+        update myERP_mainboard set mainboard_title = #{mainboardTitle}, mainboard_content = #{mainboardContent}
+        where mainboard_bno = #{mainboardBno}
+    </update>
 </mapper>

@@ -10,7 +10,7 @@ create table myERP_mainboard(
 );
 commit;
 
-
+drop table 
 select * from myERP_mainboard;
 create sequence mainboard_bno_seq
 start with 1

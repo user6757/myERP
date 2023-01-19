@@ -9,4 +9,6 @@ public interface MemberMapper {
     int idcheck(String userId);
     boolean singUp(MyERP_userDTO myERPuserDTO);
 
+    String getuserName(String userId);
+
 }
