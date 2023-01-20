@@ -67,14 +67,14 @@ public class MainController {
     }
 
     @RequestMapping("/main/mainboardwriter")
-    public ModelAndView mainBoardwriter(HttpServletRequest request, MyERP_mainboard mainboard){
+    public ModelAndView mainBoardwriter(HttpServletRequest request, String mainboardWriter){
+
         session = request.getSession();
-        String userName = request.getParameter("boardname");
         String mainboardUserid = (String)session.getAttribute("userId");
-        mainboard.setMainboardUserId(mainboardUserid);
-        mainboard.setMainboardWriter(userName);
+
         ModelAndView mv = new ModelAndView();
-        mv.addObject("main", mainboard);
+        mv.addObject("mainboardWriter", mainboardWriter);
+        mv.addObject("mainboardUserId", mainboardUserid);
         mv.setViewName("main/mainboardwriter");
         return mv;
     }

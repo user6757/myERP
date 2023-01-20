@@ -18,3 +18,4 @@
 <script src="js/detaile.js"></script>
 <script src="js/allpage.js"></script>
 <script src="js/modify.js"></script>
+<script src="js/delete.js"></script>

@@ -20,6 +20,7 @@ public class MainBoardServiceImpl implements MainBoardService {
 
     @Autowired
     public MainBoardServiceImpl(MainBoardMapper mainBoardMapper){
+        System.out.println("service객체 생성!!");
         this.mainBoardMapper = mainBoardMapper;
     }
 
@@ -65,7 +66,12 @@ public class MainBoardServiceImpl implements MainBoardService {
     }
 
     @Override
-    public boolean boardmodify(MyERP_mainboard mainboard) {
-        return mainBoardMapper.boardmodify(mainboard);
+    public boolean boardmodify(MyERP_mainboard mymainboard) {
+        return mainBoardMapper.boardmodify(mymainboard);
+    }
+
+    @Override
+    public boolean delete(int mainboardBno) {
+        return mainBoardMapper.delete(mainboardBno);
     }
 }

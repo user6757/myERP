@@ -17,5 +17,7 @@ public interface MainBoardService {
 
     boolean boardmodify(MyERP_mainboard mainboard);
 
+    boolean delete(int mainboardBno);
+
 
 }

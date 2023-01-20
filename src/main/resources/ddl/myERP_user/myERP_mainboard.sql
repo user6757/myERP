@@ -9,15 +9,21 @@ create table myERP_mainboard(
     mainboard_modifiy_regdate date
 );
 commit;
-
-drop table 
 select * from myERP_mainboard;
 create sequence mainboard_bno_seq
 start with 1
 increment by 1
 nocache;
 
+delete from myERP_mainboard;
+commit;
+
 insert into myERP_mainboard(mainboard_bno, mainboard_writer, mainboard_title, mainboard_content, mainboard_regdate, mainboard_user_id)
 values(mainboard_bno_seq.nextval, '홍길동', '제목', '내용', sysdate, 'mong@naver.com');
-alter table myERP_mainboard add constraint myERP_mainboard_mainboard_user_id_fk
+
+insert into myERP_mainboard(mainboard_bno, mainboard_writer, mainboard_title, mainboard_content, mainboard_regdate, mainboard_user_id)
+values(mainboard_bno_seq.nextval, '성춘향', '제목3', '내용4', sysdate, 'sung@naver.com');
+
+alter table myERP_mainboard add constraint myERP_mainboard_user_id_fk
 foreign key(mainboard_user_id)references myERP_user(user_id);
+commit;

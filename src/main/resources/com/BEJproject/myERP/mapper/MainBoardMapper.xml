@@ -50,7 +50,14 @@
     </update>
 
     <update id="boardmodify">
-        update myERP_mainboard set mainboard_title = #{mainboardTitle}, mainboard_content = #{mainboardContent}
+        update myERP_mainboard set mainboard_title = #{mainboardTitle}, mainboard_content = #{mainboardContent}, mainboard_modify_regdate = sysdate
         where mainboard_bno = #{mainboardBno}
     </update>
+
+    <delete id="delete">
+        delete from myERP_mainboard
+        where mainboard_bno = #{mainboardBno}
+    </delete>
+
+
 </mapper>

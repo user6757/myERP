@@ -20,6 +20,7 @@ public class MyERP_mainboard {
     private Integer mainboardViewcnt;
     private String mainboardUserId;
     private Date mainboardRegdate;
-    private Date mainboardModifyregdate;
+    private Date mainboardModifyRegdate;
     private String strRegdate;
+    private String strmodifydate;
 }
