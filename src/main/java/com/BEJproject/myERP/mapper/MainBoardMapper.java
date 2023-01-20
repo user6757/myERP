@@ -21,4 +21,6 @@ public interface MainBoardMapper {
 
     boolean boardmodify(MyERP_mainboard mainboard);
 
+    boolean delete(int mainboardBno);
+
 }

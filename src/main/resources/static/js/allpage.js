@@ -7,9 +7,7 @@ function mainboard(path, name){
 
 function mainboardpath(path, name){
 
-    const mainboardWriter = $('#mainboardWriter');
-
     $('#mainContent').children().remove();
-    $('#mainContent').load('/'+path+'/'+name+'?boardname='+mainboardWriter.val());
+    $('#mainContent').load('/'+path+'/'+name);
 
 }

@@ -42,6 +42,9 @@
             <th scope="col">제목</th>
             <th id="read_board_count" scope="col">조회수</th>
             <th scope="col">작성일</th>
+            <c:if test="${list.mainboardModifyRegdate != null}">
+                <th scope="col">수정일</th>
+            </c:if>
         </tr>
     </thead>
 
@@ -52,6 +55,9 @@
                 <td><a href="#" onclick="detailepath('main', 'detaile?mainboardBno=${list.mainboardBno}')">${list.mainboardTitle}</a></td>
                 <td>${list.mainboardViewcnt}</td>
                 <td>${list.strRegdate}</td>
+                <c:if test="${list.mainboardModifyRegdate != null}">
+                <td>${list.mainboardModifyRegdate}</td>
+            </c:if>
             </tr>
         </c:forEach>
     </tbody>
@@ -63,11 +69,8 @@
 <!-- 게시글 목록 하단 영역 -->
 <div class="bottom-section">
 
-    <!-- 글쓰기 버튼 영역 -->
-    <input type="hidden" id="boardname" value="${boardname}">
-
         <div class="create writing" align="left">
-            <a class="btn btn-success" onclick="mainboardform('main', 'mainboardwriter')">글쓰기</a>
+            <a class="btn btn-success" onclick="mainboardpath('main', 'mainboardwriter?mainboardWriter=${boardname}')">글쓰기</a>
         </div>
     <!-- 페이지 버튼 영역 -->
     

@@ -20,11 +20,13 @@ public class MainBoardController {
 
     @Autowired
     public MainBoardController(MainBoardService mainBoardService){
+        System.out.println("controller 객체 생성!!");
         this.mainBoardService = mainBoardService;
     }
 
     @RequestMapping(value = "/main/detaile", method = {RequestMethod.GET})
     public ModelAndView detaile(String mainboardBno){
+        log.info("받은번호:{}", mainboardBno);
         MyERP_mainboard mainboard = mainBoardService.getboard(mainboardBno);
         ModelAndView mv = new ModelAndView("main/mainboardDetaile");
         if(mainboard != null){
@@ -38,6 +40,7 @@ public class MainBoardController {
 
     @RequestMapping("/main/mainboardsave")
     public ResponseEntity<?> save(MyERP_mainboard mainboard){
+        log.info("");
         boolean save = mainBoardService.boardsave(mainboard);
         if (save==true){
             return new ResponseEntity<>("success", HttpStatus.OK);
@@ -57,6 +60,17 @@ public class MainBoardController {
             return new ResponseEntity<>("error", HttpStatus.BAD_REQUEST);
         }
 
+    }
+
+    @RequestMapping("/main/delete")
+    public ResponseEntity<?> delete(Integer mainboardBno){
+        log.info("delete 받은 번호:{}", mainboardBno);
+        boolean getdata = mainBoardService.delete(mainboardBno);
+        if (getdata == true){
+            return new ResponseEntity<>("글삭제가 정상적으로 완료되었습니다.", HttpStatus.OK);
+        }else {
+            return new ResponseEntity<>("글삭제가 실패되었습니다.", HttpStatus.BAD_REQUEST);
+        }
     }
 
 }
