@@ -21,7 +21,7 @@
         <result column="mainboard_viewcnt" property="mainboardViewcnt"/>
         <result column="mainboard_regdate" property="mainboardRegdate"/>
         <result column="mainboard_user_id" property="mainboardUserId"/>
-        <result column="mainboard_modify_regdate" property="mainboardModifyregdate"/>
+        <result column="mainboard_modifiy_regdate" property="mainboardModifyRegdate"/>
     </resultMap>
 
     <select id="getUser" resultMap="login">
@@ -30,8 +30,8 @@
     </select>
 
     <insert id="boardsave">
-        insert into myERP_mainboard(mainboard_bno, mainboard_writer, mainboard_title, mainboard_content, mainboard_regdate, mainboard_user_id)
-        values(mainboard_bno_seq.nextval, #{mainboardWriter}, #{mainboardTitle}, #{mainboardContent}, sysdate, #{mainboardUserId})
+        insert into myERP_mainboard(mainboard_bno, mainboard_writer, mainboard_title, mainboard_content, mainboard_regdate, mainboard_user_id, mainboard_modifiy_regdate)
+        values(mainboard_bno_seq.nextval, #{mainboardWriter}, #{mainboardTitle}, #{mainboardContent}, sysdate, #{mainboardUserId}, sysdate)
     </insert>
 
     <select id="boardlist" resultMap="main">
@@ -50,7 +50,7 @@
     </update>
 
     <update id="boardmodify">
-        update myERP_mainboard set mainboard_title = #{mainboardTitle}, mainboard_content = #{mainboardContent}, mainboard_modify_regdate = sysdate
+        update myERP_mainboard set mainboard_title = #{mainboardTitle}, mainboard_content = #{mainboardContent}, mainboard_modifiy_regdate = sysdate
         where mainboard_bno = #{mainboardBno}
     </update>
 

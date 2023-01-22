@@ -1,5 +1,5 @@
 function writercheck(path, name){
-    alert('클릭!');
+    
     const $userid = $('#mainboardUserId').val();
     const $mainboardTitle = $('#mainboardTitle').val();
     const $mainboardContent = $('#mainboardContent').val();

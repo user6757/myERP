@@ -20,7 +20,6 @@ public class MainBoardServiceImpl implements MainBoardService {
 
     @Autowired
     public MainBoardServiceImpl(MainBoardMapper mainBoardMapper){
-        System.out.println("service객체 생성!!");
         this.mainBoardMapper = mainBoardMapper;
     }
 
@@ -43,9 +42,10 @@ public class MainBoardServiceImpl implements MainBoardService {
 
         List<MyERP_mainboard> list = mainBoardMapper.boardlist();
         List<MyERP_mainboard> boardlist = new ArrayList<>();
-
+        log.info("실행확인!");
         for (MyERP_mainboard main: list){
             main.setStrRegdate(regdate(main.getMainboardRegdate()));
+            main.setStrModifiyRegdate(regdate(main.getMainboardModifyRegdate()));
             boardlist.add(main);
         }
 
