@@ -7,21 +7,30 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 @Service
 @Log4j2
 public class LoginServiceImpl implements LoginService{
 
     private LoginMapper loginMapper;
+    private HttpSession session;
 
     @Autowired
-    public LoginServiceImpl(LoginMapper loginMapper){
+    public LoginServiceImpl(LoginMapper loginMapper) {
         this.loginMapper = loginMapper;
     }
 
-    public boolean singIn(MyERP_userDTO myERPuserDTO){
+    public boolean singIn(MyERP_userDTO myERPuserDTO, HttpServletRequest request){
+
         int getuser = loginMapper.singIn(myERPuserDTO);
+
         boolean pathreult = true;
         if (getuser > 0){
+            session = request.getSession();
+            session.setAttribute("userId", myERPuserDTO.getUserId());
+            session.setMaxInactiveInterval(18000);
             return pathreult;
         }else{
             return pathreult = false;

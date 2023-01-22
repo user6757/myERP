@@ -54,14 +54,21 @@ public class MainController {
         session = request.getSession();
         String userId = (String)session.getAttribute("userId");
         String userName = memberService.getuserName(userId);
+
         int mainboardBno = 0;
+        boolean modifydatecheck = false;
+        log.info("날짜:{}", modifydatecheck);
         for(MyERP_mainboard mainboard: list){
             mainboardBno = mainboard.getMainboardBno();
+            if(!mainboard.getStrModifiyRegdate().equals(mainboard.getStrRegdate())){
+                modifydatecheck = true;
+            }
         }
         ModelAndView mv = new ModelAndView();
         mv.setViewName("main/mainboard");
         mv.addObject("mainboardBno", mainboardBno);
         mv.addObject("main", list);
+        mv.addObject("modify", modifydatecheck);
         mv.addObject("boardname", userName);
         return mv;
     }

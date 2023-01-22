@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.util.Date;
-
 @Data
 @ToString
 @AllArgsConstructor
@@ -22,5 +21,5 @@ public class MyERP_mainboard {
     private Date mainboardRegdate;
     private Date mainboardModifyRegdate;
     private String strRegdate;
-    private String strmodifydate;
+    private String strModifiyRegdate;
 }

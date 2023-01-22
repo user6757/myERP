@@ -38,22 +38,14 @@ public class LoginController {
     @RequestMapping(value = "/login/sing_in", method = {RequestMethod.POST})
     @ResponseBody
     public ResponseEntity<Boolean> singIn(MyERP_userDTO myERPuserDTO, HttpServletRequest request){
-        boolean login = loginService.singIn(myERPuserDTO);
-        if (login == true){
-            session= request.getSession();
-            session.setMaxInactiveInterval(1800);
-            session.setAttribute("userId", myERPuserDTO.getUserId());
-        }
-
+        boolean login = loginService.singIn(myERPuserDTO, request);
         return new ResponseEntity<>(login, HttpStatus.OK);
-
     }
 
     @RequestMapping("/logout")
     public ModelAndView logout(HttpServletRequest request){
         session = request.getSession(false);
-        if(session ==null){
-            log.info("세션아이디:{}", session.getAttribute("userId"));
+        if(session != null){
             session.invalidate();
         }
         ModelAndView mv = new ModelAndView("login/login");

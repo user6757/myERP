@@ -20,7 +20,6 @@ public class MainBoardController {
 
     @Autowired
     public MainBoardController(MainBoardService mainBoardService){
-        System.out.println("controller 객체 생성!!");
         this.mainBoardService = mainBoardService;
     }
 
