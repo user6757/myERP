@@ -11,7 +11,7 @@ public interface MainBoardService {
 
     boolean boardsave(MyERP_mainboard myERP_mainboard);
 
-    List<MyERP_mainboard> boardlist();
+    List<MyERP_mainboard> boardlist(MyERP_mainboard mainboard);
 
     MyERP_mainboard getboard(String mainboardBno);
 

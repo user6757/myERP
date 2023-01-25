@@ -19,7 +19,7 @@
 
                 <div>
                     <button type="button" class="btn btn-primary" onclick="writercheck('main', 'mainboard')">등록</button>
-                    <button id="to-list" type="button" class="btn btn-primary" onclick="mainboardpath('main', 'mainboard')">목록</button>
+                    <button id="to-list" type="button" class="btn btn-primary" onclick="mainboard('main', 'mainboard')">목록</button>
                     
                 </div>
             </form>

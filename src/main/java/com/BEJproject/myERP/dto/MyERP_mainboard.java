@@ -22,4 +22,6 @@ public class MyERP_mainboard {
     private Date mainboardModifyRegdate;
     private String strRegdate;
     private String strModifiyRegdate;
+    private String mainboardtype;
+    private String mainboardkeyword;
 }
