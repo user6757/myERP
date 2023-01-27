@@ -1,3 +1,12 @@
+
+function writerform(){
+
+    document.writerfrm.method='post';
+    document.writerfrm.action='/main/mainboardwriter';
+    document.writerfrm.submit();
+}
+
+
 function writercheck(path, name){
     
     const $userid = $('#mainboardUserId').val();
@@ -27,8 +36,7 @@ function writercheck(path, name){
         },
         success:function(data){
             alert('게시물 등록에 성공하였습니다.');
-            $('#mainContent').children().remove();
-            $('#mainContent').load('/'+path+'/'+name);
+            location.href='/main/mainboard';
         },
         error:function(xhr, status){
             alert('게시물 등록에 실패하였습니다.');

@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -48,41 +49,27 @@ public class MainController {
         ModelAndView mv = new ModelAndView("main/maindashboard");
         return mv;
     }
-    @RequestMapping("/main/mainboard")
-    public ModelAndView mainBoard(HttpServletRequest request){
-        List<MyERP_mainboard> list = mainBoardService.boardlist();
+    @RequestMapping(value = "/main/mainboard", method = {RequestMethod.GET, RequestMethod.POST})
+    public ModelAndView mainBoard(HttpServletRequest request, MyERP_mainboard myERP_mainboard){
+        List<MyERP_mainboard> list = mainBoardService.boardlist(myERP_mainboard);
         session = request.getSession();
         String userId = (String)session.getAttribute("userId");
-        String userName = memberService.getuserName(userId);
+        MyERP_userDTO userDTO = mainBoardService.getUser(userId);
 
-        int mainboardBno = 0;
         boolean modifydatecheck = false;
         log.info("날짜:{}", modifydatecheck);
         for(MyERP_mainboard mainboard: list){
-            mainboardBno = mainboard.getMainboardBno();
             if(!mainboard.getStrModifiyRegdate().equals(mainboard.getStrRegdate())){
                 modifydatecheck = true;
             }
         }
+
         ModelAndView mv = new ModelAndView();
         mv.setViewName("main/mainboard");
-        mv.addObject("mainboardBno", mainboardBno);
+        mv.addObject("user", userDTO);
         mv.addObject("main", list);
         mv.addObject("modify", modifydatecheck);
-        mv.addObject("boardname", userName);
-        return mv;
-    }
-
-    @RequestMapping("/main/mainboardwriter")
-    public ModelAndView mainBoardwriter(HttpServletRequest request, String mainboardWriter){
-
-        session = request.getSession();
-        String mainboardUserid = (String)session.getAttribute("userId");
-
-        ModelAndView mv = new ModelAndView();
-        mv.addObject("mainboardWriter", mainboardWriter);
-        mv.addObject("mainboardUserId", mainboardUserid);
-        mv.setViewName("main/mainboardwriter");
+        mv.addObject("boardname", userDTO.getUserName());
         return mv;
     }
 

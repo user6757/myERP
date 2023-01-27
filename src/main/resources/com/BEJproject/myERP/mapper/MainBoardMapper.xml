@@ -36,6 +36,12 @@
 
     <select id="boardlist" resultMap="main">
         select * from myERP_mainboard
+        <if test="mainboardtype == 'maintitle'">
+            where mainboard_title like '%'||#{mainboardkeyword}||'%'
+        </if>
+        <if test="mainboardtype == 'maincontent'">
+            where mainboard_content like '%'||#{mainboardkeyword}||'%'
+        </if>
         order by mainboard_bno desc
     </select>
 

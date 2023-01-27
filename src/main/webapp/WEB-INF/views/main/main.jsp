@@ -38,10 +38,7 @@
             </c:if>
             <br>
             <br>
-            
-            <form action="logout" method="post">
-                <button class="btn btn-primary" style="width: 186px;" href="/logout">로그아웃</button>
-            </form>
+            <a class="btn btn-primary" href="http://localhost:8097/logout" style="width: 186px;">로그아웃</a>
           </a>
     
         </li>
@@ -86,7 +83,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link collapsed" onclick="mainboard('main', 'mainboard')">
+          <a class="nav-link collapsed" onclick="mainboard()">
             <i class="fa-solid fa-clipboard"></i>
             <span>자유 게시판</span>
           </a>
@@ -166,14 +163,16 @@
           </nav>
           <!-- End of Topbar -->
           <div id="mainContent" class="container-fluid">
-            <%--        <tiles:insertAttribute name="body"/>--%>
+              <h1>myERP</h1>
           </div>
+
         </div>
         <!-- footer -->
         <jsp:include page="../../tiles/layouts/footer.jsp"/>
       </div>
       <!-- End of Content Wrapper -->
     </div>
+    <script src="js/allpage.js"></script>
 
     </body>
 </html>

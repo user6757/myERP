@@ -48,7 +48,7 @@ public class LoginController {
         if(session != null){
             session.invalidate();
         }
-        ModelAndView mv = new ModelAndView("login/login");
+        ModelAndView mv = new ModelAndView("index");
         return mv;
     }
 }

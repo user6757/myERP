@@ -38,9 +38,9 @@ public class MainBoardServiceImpl implements MainBoardService {
         return regdate;
     }
 
-    public List<MyERP_mainboard> boardlist(){
+    public List<MyERP_mainboard> boardlist(MyERP_mainboard mainboard){
 
-        List<MyERP_mainboard> list = mainBoardMapper.boardlist();
+        List<MyERP_mainboard> list = mainBoardMapper.boardlist(mainboard);
         List<MyERP_mainboard> boardlist = new ArrayList<>();
         log.info("실행확인!");
         for (MyERP_mainboard main: list){

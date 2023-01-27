@@ -30,7 +30,7 @@ public class LoginServiceImpl implements LoginService{
         if (getuser > 0){
             session = request.getSession();
             session.setAttribute("userId", myERPuserDTO.getUserId());
-            session.setMaxInactiveInterval(18000);
+            session.setMaxInactiveInterval(18000);                                      //세션유지 5시간 설정
             return pathreult;
         }else{
             return pathreult = false;
