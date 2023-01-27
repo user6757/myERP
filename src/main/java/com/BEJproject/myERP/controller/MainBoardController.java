@@ -12,15 +12,32 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 @Controller
 @Log4j2
 public class MainBoardController {
 
     private MainBoardService mainBoardService;
+    private HttpSession session;
 
     @Autowired
     public MainBoardController(MainBoardService mainBoardService){
         this.mainBoardService = mainBoardService;
+    }
+
+    @RequestMapping(value = "/main/mainboardwriter", method = {RequestMethod.POST})
+    public ModelAndView mainBoardwriter(HttpServletRequest request, String mainboardWriter){
+
+        session = request.getSession();
+        String mainboardUserid = (String)session.getAttribute("userId");
+
+        ModelAndView mv = new ModelAndView();
+        mv.addObject("mainboardWriter", mainboardWriter);
+        mv.addObject("mainboardUserId", mainboardUserid);
+        mv.setViewName("main/mainboardwriter");
+        return mv;
     }
 
     @RequestMapping(value = "/main/detaile", method = {RequestMethod.GET})

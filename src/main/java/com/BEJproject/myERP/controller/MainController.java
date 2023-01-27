@@ -73,18 +73,5 @@ public class MainController {
         return mv;
     }
 
-    @RequestMapping("/main/mainboardwriter")
-    public ModelAndView mainBoardwriter(HttpServletRequest request, String mainboardWriter){
-
-        session = request.getSession();
-        String mainboardUserid = (String)session.getAttribute("userId");
-
-        ModelAndView mv = new ModelAndView();
-        mv.addObject("mainboardWriter", mainboardWriter);
-        mv.addObject("mainboardUserId", mainboardUserid);
-        mv.setViewName("main/mainboardwriter");
-        return mv;
-    }
-
 
 }

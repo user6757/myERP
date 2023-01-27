@@ -11,8 +11,7 @@ function boardDelete(path, name){
         },
         success:function(data){
             alert(data);
-            $('#mainContent').children().remove();
-            $('#mainContent').load('/'+path+'/'+name);
+            window.location.href='/main/mainboard';
         },
         error:function(result){
             alert(result);

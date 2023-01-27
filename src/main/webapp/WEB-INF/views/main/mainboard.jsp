@@ -32,16 +32,14 @@
         <!-- Nav Item - Dashboard -->
         <li class="nav-item active">
           <a class="nav-link">
-            <img class="img-profile rounded-circle" src="img/undraw_profile.svg" style="width: 64px;height: 64px;">&nbsp;&nbsp;
+            <img class="img-profile rounded-circle" src="../img/undraw_profile.svg" style="width: 64px;height: 64px;">&nbsp;&nbsp;
             <span>${user.userName}</span>&nbsp;
             <c:if test="${user.userFlag eq '관리자'}">
                 <span class="badge badge-danger">Admin</span>
             </c:if>
             <br>
             <br>
-            <form action="/logout" method="post">
-                <button class="btn btn-primary" style="width: 186px;" href="../logout">로그아웃</button>
-            </form>
+            <a class="btn btn-primary" style="width: 186px;" href="http://localhost:8097/logout">로그아웃</a>
           </a>
     
         </li>
@@ -199,7 +197,7 @@
                     <c:forEach var="list" items="${main}">
                         <tr>
                             <th scope="row">${list.mainboardBno}</th>
-                            <td><a href="#" onclick="detailepath('main', 'detaile?mainboardBno=${list.mainboardBno}')">${list.mainboardTitle}</a>
+                            <td><a href="/main/detaile?mainboardBno=${list.mainboardBno}">${list.mainboardTitle}</a>
                             </td>
                             <td>${list.mainboardViewcnt}</td>
                             <td>${list.strRegdate}</td>
@@ -218,8 +216,10 @@
             <div class="bottom-section">
     
                 <div class="create writing" align="left">
-                    <a class="btn btn-success"
-                        onclick="mainboard('main', 'mainboardwriter?mainboardWriter=${boardname}')">글쓰기</a>
+                  <form name="writerfrm">
+                  <input type="hidden" name="mainboardWriter" id="mainboardWriter" value="${boardname}">
+                    <button type="button" class="btn btn-success" onclick="writerform()">글쓰기</button>
+                  </form>  
                 </div>
                 <!-- 페이지 버튼 영역 -->
     
@@ -239,6 +239,7 @@
       </div>
       <!-- End of Content Wrapper -->
     </div>
+    <script src="../js/writer.js"></script>
     <script src="../js/detaile.js"></script>
 
     </body>
