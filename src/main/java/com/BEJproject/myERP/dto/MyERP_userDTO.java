@@ -21,5 +21,6 @@ public class MyERP_userDTO {
     private Date userModifyregdate; //사원정보수정날짜
     private Integer userNo; //사원번호
     private String userFlag; //사원구분
+    private String struserRegdate;
 
 }

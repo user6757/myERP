@@ -174,8 +174,8 @@
                         <option value="maincontent">내용</option>
                     </select><br>
                     <div class="input-group" style="margin-left: auto;">
-                        <input type="text" class="form-control" id="mainboardkeyword" placeholder="입력:" name="mainboardkeyword" placeholder="제목을 입력해 주세요." required>
-                        <input type="submit" value="검색">
+                        <input type="text" class="form-control" id="mainboardkeyword" placeholder="입력:" name="mainboardkeyword" required>
+                        <input type="submit" class="btn btn-success" value="검색">
                     </div>
                 </form>
             </div>

@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 @Log4j2
@@ -28,16 +29,13 @@ public class LoginController {
     public LoginController(LoginService loginService){
         this.loginService = loginService;
     }
-    @RequestMapping("/login")
-    public ModelAndView login(){
-        ModelAndView mv= new ModelAndView();
-        mv.setViewName("login/login");
-        return mv;
+    @RequestMapping("/login/login_login")
+    public String login(){
+        return null;
     }
 
     @RequestMapping(value = "/login/sing_in", method = {RequestMethod.POST})
-    @ResponseBody
-    public ResponseEntity<Boolean> singIn(MyERP_userDTO myERPuserDTO, HttpServletRequest request){
+    public ResponseEntity<Boolean> singIn(MyERP_userDTO myERPuserDTO, HttpServletRequest request) throws Exception{
         boolean login = loginService.singIn(myERPuserDTO, request);
         return new ResponseEntity<>(login, HttpStatus.OK);
     }
@@ -51,4 +49,65 @@ public class LoginController {
         ModelAndView mv = new ModelAndView("index");
         return mv;
     }
+
+    @RequestMapping("/login/login_idfind")
+    public String idfind(){
+        return null;
+    }
+
+    @RequestMapping(value = "/login/accountfind", method = {RequestMethod.POST})
+    public ResponseEntity<?> accountfind(MyERP_userDTO myERP_userDTO){
+        int usercheck = loginService.accountfind(myERP_userDTO);
+
+        if (usercheck > 0){
+            return new ResponseEntity<>("success", HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>("error", HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @RequestMapping(value = "/login/getaccount", method = {RequestMethod.POST})
+    public ModelAndView getaccount(MyERP_userDTO userDTO){
+        List<MyERP_userDTO> accountlist = loginService.getaccount(userDTO);
+        ModelAndView mv = new ModelAndView("login/login_idfind");
+        if (accountlist != null){
+            mv.addObject("username", userDTO.getUserName());
+            mv.addObject("account", accountlist);
+            return mv;
+        }else{
+            return mv;
+        }
+    }
+
+    @RequestMapping("/login/login_pwfind")
+    public String pwfindform(){
+        return null;
+    }
+
+    @RequestMapping(value = "/login/login_checkpwfind", method = {RequestMethod.POST})
+    public ResponseEntity<?> pwfind(String userId){
+        boolean getpwcheck = loginService.pwfind(userId);
+        if (getpwcheck == true){
+            return new ResponseEntity<>(HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @RequestMapping(value = "/login/login_okpwfind", method = {RequestMethod.POST})
+    public ModelAndView okpwfind(String userId){
+
+        String getpassword = loginService.okpassword();
+        ModelAndView mv = new ModelAndView("login/login_pwfind");
+        if (userId != null || getpassword != null){
+            mv.addObject("pass", getpassword);
+            mv.addObject("userId", userId);
+        }else {
+            mv.addObject("pass", getpassword);
+        }
+        return mv;
+    }
+
+
+
 }

@@ -32,7 +32,6 @@ $(document).ready(function () {
 
         }
 
-        //console.log('순서확인!');
         if(checkbtn[0] === false){
             $.ajax({
                 type: 'post',
@@ -54,13 +53,6 @@ $(document).ready(function () {
         }else if(checkbtn[0] ===true){
             usercheck();
         }
-
-            // checkbtn[0] = true;
-       // console.log('값확인함:', checkbtn[0]);
-
-        // for(let i=0; i<checkbtn.length; i++){
-        //     if(checkbtn[i])
-        // }
     });
 
     function usercheck(){
@@ -112,7 +104,7 @@ $(document).ready(function () {
             },
             success:function(data){
                 alert('회원가입에 성공하였습니다.');
-                location.href = '/login';
+                location.href = '/login/login_login';
 
             },
             error:function(data){
