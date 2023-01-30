@@ -13,6 +13,7 @@ import java.security.MessageDigest;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @Service
 @Log4j2
@@ -75,6 +76,24 @@ public class LoginServiceImpl implements LoginService{
         }
 
         return userlist;
+    }
+
+    @Override
+    public boolean pwfind(String userId) {
+        int getpwcheck = loginMapper.pwfind(userId);
+        if (getpwcheck > 0){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    @Override
+    public String okpassword() {
+        Random random = new Random();
+        int getpassword = random.nextInt(1000000);
+        String password = Integer.toString(getpassword);
+        return password;
     }
 
 }

@@ -1,20 +1,22 @@
-function pwfind(){
+function pwfindcheck(){
 
     $userId = $('#userId');
 
     if($userId.val() == ''){
         alert('아이디를 입력하여주세요!');
+        return;
     }
 
     $.ajax({
         type: 'post',
-        url: '/login/login_pwdinf',
+        url: '/login/login_checkpwfind',
         data:{
             userId: $userId.val()
         },
         success:function(data){
-            alert('성공!');
-            window.location.href='/login/login_login';
+            document.passwordfrm.method='post';
+            document.passwordfrm.action='/login/login_okpwfind';
+            document.passwordfrm.submit();
         },
         error:function(data){
             alert('해당아이디는 존재하지않는 정보입니다.');

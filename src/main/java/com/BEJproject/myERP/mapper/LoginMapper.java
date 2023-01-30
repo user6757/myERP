@@ -13,4 +13,6 @@ public interface LoginMapper {
 
     List<MyERP_userDTO> getaccount(MyERP_userDTO myERP_userDTO);
 
+    int pwfind(String userId);
+
 }

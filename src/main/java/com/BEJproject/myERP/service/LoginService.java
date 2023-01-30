@@ -12,4 +12,8 @@ public interface LoginService {
 
     List<MyERP_userDTO> getaccount(MyERP_userDTO myERP_userDTO);
 
+    boolean pwfind(String userId);
+
+    String okpassword();
+
 }

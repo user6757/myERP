@@ -52,13 +52,11 @@ public class LoginController {
 
     @RequestMapping("/login/login_idfind")
     public String idfind(){
-        System.out.println("확인!");
         return null;
     }
 
     @RequestMapping(value = "/login/accountfind", method = {RequestMethod.POST})
     public ResponseEntity<?> accountfind(MyERP_userDTO myERP_userDTO){
-        log.info("받은 이름:{}, 받은 핸드폰번호:{}", myERP_userDTO.getUserName(), myERP_userDTO.getUserTel());
         int usercheck = loginService.accountfind(myERP_userDTO);
 
         if (usercheck > 0){
@@ -82,8 +80,34 @@ public class LoginController {
     }
 
     @RequestMapping("/login/login_pwfind")
-    public String pwfind(){
+    public String pwfindform(){
         return null;
     }
+
+    @RequestMapping(value = "/login/login_checkpwfind", method = {RequestMethod.POST})
+    public ResponseEntity<?> pwfind(String userId){
+        boolean getpwcheck = loginService.pwfind(userId);
+        if (getpwcheck == true){
+            return new ResponseEntity<>(HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @RequestMapping(value = "/login/login_okpwfind", method = {RequestMethod.POST})
+    public ModelAndView okpwfind(String userId){
+
+        String getpassword = loginService.okpassword();
+        ModelAndView mv = new ModelAndView("login/login_pwfind");
+        if (userId != null || getpassword != null){
+            mv.addObject("pass", getpassword);
+            mv.addObject("userId", userId);
+        }else {
+            mv.addObject("pass", getpassword);
+        }
+        return mv;
+    }
+
+
 
 }
