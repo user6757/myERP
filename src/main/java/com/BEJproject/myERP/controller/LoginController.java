@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 @Log4j2
@@ -28,16 +29,13 @@ public class LoginController {
     public LoginController(LoginService loginService){
         this.loginService = loginService;
     }
-    @RequestMapping("/login")
-    public ModelAndView login(){
-        ModelAndView mv= new ModelAndView();
-        mv.setViewName("login/login");
-        return mv;
+    @RequestMapping("/login/login_login")
+    public String login(){
+        return null;
     }
 
     @RequestMapping(value = "/login/sing_in", method = {RequestMethod.POST})
-    @ResponseBody
-    public ResponseEntity<Boolean> singIn(MyERP_userDTO myERPuserDTO, HttpServletRequest request){
+    public ResponseEntity<Boolean> singIn(MyERP_userDTO myERPuserDTO, HttpServletRequest request) throws Exception{
         boolean login = loginService.singIn(myERPuserDTO, request);
         return new ResponseEntity<>(login, HttpStatus.OK);
     }
@@ -51,4 +49,41 @@ public class LoginController {
         ModelAndView mv = new ModelAndView("index");
         return mv;
     }
+
+    @RequestMapping("/login/login_idfind")
+    public String idfind(){
+        System.out.println("확인!");
+        return null;
+    }
+
+    @RequestMapping(value = "/login/accountfind", method = {RequestMethod.POST})
+    public ResponseEntity<?> accountfind(MyERP_userDTO myERP_userDTO){
+        log.info("받은 이름:{}, 받은 핸드폰번호:{}", myERP_userDTO.getUserName(), myERP_userDTO.getUserTel());
+        int usercheck = loginService.accountfind(myERP_userDTO);
+
+        if (usercheck > 0){
+            return new ResponseEntity<>("success", HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>("error", HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @RequestMapping(value = "/login/getaccount", method = {RequestMethod.POST})
+    public ModelAndView getaccount(MyERP_userDTO userDTO){
+        List<MyERP_userDTO> accountlist = loginService.getaccount(userDTO);
+        ModelAndView mv = new ModelAndView("login/login_idfind");
+        if (accountlist != null){
+            mv.addObject("username", userDTO.getUserName());
+            mv.addObject("account", accountlist);
+            return mv;
+        }else{
+            return mv;
+        }
+    }
+
+    @RequestMapping("/login/login_pwfind")
+    public String pwfind(){
+        return null;
+    }
+
 }

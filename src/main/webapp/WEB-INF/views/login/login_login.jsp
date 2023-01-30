@@ -12,7 +12,7 @@
     <meta name="author" content="">
 
     <title>erp</title>
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="../css/sb-admin-2.min.css" rel="stylesheet">
     <jsp:include page="../../tiles/layouts/include.jsp" />
 
 </head>
@@ -52,17 +52,13 @@
                                         <a href="/membership" class="btn btn-google btn-user btn-block">
                                             <i class="fab fa-google fa-fw"></i> 회원가입
                                         </a>
-                                        <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                                            <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
+                                        <a href="/login/login_idfind" class="btn btn-facebook btn-user btn-block">
+                                            <i class="fab fa-facebook-f fa-fw"></i> 아이디찾기
+                                        </a>
+                                        <a href="/login/login_pwfind" class="btn btn-facebook btn-user btn-block">
+                                            <i class="fab fa-facebook-f fa-fw"></i> 비밀번호찾기
                                         </a>
                                     </form>
-                                    <hr>
-                                    <div class="text-center">
-                                        <a class="small" href="forgot-password.html">Forgot Password?</a>
-                                    </div>
-                                    <div class="text-center">
-                                        <a class="small" href="register.html">Create an Account!</a>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -74,8 +70,7 @@
         </div>
 
     </div>
-   <script src="js/sing_in.js"></script>
-
+    <script src="../js/sing_in.js"></script>
 
 </body>
 

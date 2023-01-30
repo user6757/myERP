@@ -17,4 +17,14 @@
        select count(*) from myERP_user
        where user_id = #{userId} and user_pw=#{userPw}
    </select>
+
+    <select id="accountfind" resultType="int">
+        select count(user_id) from myERP_user
+        where user_name = #{userName} and user_tel=#{userTel}
+    </select>
+
+    <select id="getaccount" resultMap="login">
+        select * from myERP_user
+        where user_name = #{userName} and user_tel = #{userTel}
+    </select>
 </mapper>
